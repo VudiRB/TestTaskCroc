@@ -1,0 +1,84 @@
+@using System.Globalization
+@model Cars
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Car</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="Brand" class="control-label"></label>
+                <input asp-for="Brand" class="form-control" />
+                <span asp-validation-for="Brand" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Model" class="control-label"></label>
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GovNumber" class="control-label"></label>
+                <input asp-for="GovNumber" class="form-control" />
+                <span asp-validation-for="GovNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TypeOfGearShiftBox" class="control-label"></label>
+                <select asp-for="TypeOfGearShiftBox" asp-items="Html.GetEnumSelectList<Constants.GearShiftBox>()"></select>
+                <span asp-validation-for="TypeOfGearShiftBox" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EngineVolume" class="control-label"></label>
+                <input asp-for="EngineVolume" class="form-control" value="@Model.EngineVolume.ToString("N", CultureInfo.InvariantCulture)" />
+                <span asp-validation-for="EngineVolume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EngineForce" class="control-label"></label>
+                <input asp-for="EngineForce" class="form-control" />
+                <span asp-validation-for="EngineForce" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepreciationCoef" class="control-label"></label>
+                <input asp-for="DepreciationCoef" class="form-control" value="@Model.DepreciationCoef.ToString("N", CultureInfo.InvariantCulture)" />
+                <span asp-validation-for="DepreciationCoef" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="InsuranceCoef" class="control-label"></label>
+                <input asp-for="InsuranceCoef" class="form-control" value="@Model.InsuranceCoef.ToString("N", CultureInfo.InvariantCulture)"/>
+                <span asp-validation-for="InsuranceCoef" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaintenanceCoef" class="control-label"></label>
+                <input asp-for="MaintenanceCoef" class="form-control" value="@Model.MaintenanceCoef.ToString("N", CultureInfo.InvariantCulture)"/>
+                <span asp-validation-for="MaintenanceCoef" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarCost" class="control-label"></label>
+                <input asp-for="CarCost" class="form-control" value="@Model.CarCost.ToString("N", CultureInfo.InvariantCulture)"/>
+                <span asp-validation-for="CarCost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateOfPurchase" class="control-label"></label>
+                <input asp-for="DateOfPurchase" class="form-control" />
+                <span asp-validation-for="DateOfPurchase" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

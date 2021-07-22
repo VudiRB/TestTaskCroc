@@ -1,0 +1,44 @@
+@using TestTaskCroc.Models
+@model IEnumerable<Workers>
+@{
+    ViewData["Title"] = "Workers";
+}
+<p>
+    <a asp-action="CreateNew">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PassportNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (Workers item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.Id)</td>
+            <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+            <td>@Html.DisplayFor(modelItem => item.Birthday)</td>
+            <td>@Html.DisplayFor(modelItem => item.PassportNumber)</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <form asp-controller="Workers" asp-action="Delete" asp-route-id="@item.Id" method="post">
+                <a asp-action="Delete" asp-route-id="@item.Id" method="post">Delete</a>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

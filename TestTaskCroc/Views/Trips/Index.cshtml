@@ -1,0 +1,55 @@
+@model IEnumerable<Trips>
+@{
+    ViewData["Title"] = "Trips";
+}
+<p>
+    <a asp-action="CreateNew">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Car)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Worker)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Range)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CostOfSpentFuel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.ID)</td>
+            <td>@Html.DisplayFor(modelItem => item.Car.GovNumber)</td>
+            <td>@Html.DisplayFor(modelItem => item.Worker.PassportNumber)</td>
+            <td>@Html.DisplayFor(modelItem => item.Range)</td>
+            <td>@Html.DisplayFor(modelItem => item.CostOfSpentFuel)</td>
+            <td>@Html.DisplayFor(modelItem => item.StartTime)</td>
+            <td>@Html.DisplayFor(modelItem => item.EndTime)</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <form asp-controller="Trips" asp-action="Delete" asp-route-id="@item.ID" method="post">
+                <a asp-action="Delete" asp-route-id="@item.ID" method="post">Delete</a>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

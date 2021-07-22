@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Cars";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Charts</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.4.1/chart.min.js" integrity="sha512-5vwN8yor2fFT9pgPS9p9R7AszYaNn0LkQElTXIsZFCL7ucT8zDCAqlQXDdaqgA1mZP47hdvztBMsIoFxq/FyyQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>  
+        var LineChartData =  
+            {  
+                labels: @Html.Raw(Json.Serialize(ViewBag.Dates_List)),  
+                datasets: [{  
+                    label: 'The residual value of the car',  
+                    backgroundColor: "rgba(75,192,192,0.4)",  
+                    borderWidth: 2,  
+                    data: @Html.Raw(Json.Serialize(ViewBag.ReturnPrice_List)) 
+                }]  
+            };  
+  
+            window.onload = function () {  
+                var ctx1 = document.getElementById("Linecanvas").getContext("2d");  
+                window.myChart = new Chart(ctx1,  
+                    {  
+                        type: 'line',  
+                        data: LineChartData,  
+                        options:  
+                            {  
+                                title:  
+                                {  
+                                    display: true,  
+                                    text: "The residual value of the car"  
+                                },  
+                                responsive: true,  
+                                maintainAspectRatio: true  
+                            }  
+                    });  
+            }  
+    </script>  
+</head>  
+<body>
+<h3>The residual value of the car for 5 years, taking into account the following expenses: @ViewBag.LastCost</h3>
+<h3>The total mileage of the selected car for all shifts: @ViewBag.SumRange</h3>
+<div style="text-align: center">
+    <canvas id="Linecanvas"></canvas>
+</div>
+</body> 
+</html>
